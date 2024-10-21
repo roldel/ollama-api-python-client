@@ -1,0 +1,7 @@
+FROM python:alpine
+
+# Install necessary packages
+RUN apk add --no-cache curl
+
+# Install ollama pip package
+RUN pip install ollama

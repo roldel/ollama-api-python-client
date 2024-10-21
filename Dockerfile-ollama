@@ -1,0 +1,12 @@
+FROM ollama/ollama
+
+WORKDIR /app
+
+# Copy the start script into the container
+COPY ollama_start.sh /app/ollama_start.sh
+
+# Ensure the script is executable
+RUN chmod +x /app/ollama_start.sh
+
+# Run the script
+RUN /app/ollama_start.sh

@@ -1,0 +1,22 @@
+services:
+  ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile-ollama
+    container_name: ollama_api
+    ports: 
+      - "11434:11434"
+
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile-python
+    volumes:
+      - ./scripts:/scripts
+    depends_on:
+      - ollama
+    environment:
+      - PYTHONUNBUFFERED=1
+    tty: true
+    stdin_open: true
+    
