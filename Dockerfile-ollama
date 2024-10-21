@@ -3,10 +3,10 @@ FROM ollama/ollama
 WORKDIR /app
 
 # Copy the start script into the container
-COPY ollama_start.sh /app/ollama_start.sh
+COPY ollama_model_pull.sh /app/ollama_model_pull.sh
 
 # Ensure the script is executable
-RUN chmod +x /app/ollama_start.sh
+RUN chmod +x /app/ollama_model_pull.sh
 
 # Run the script
-RUN /app/ollama_start.sh
+RUN /app/ollama_model_pull.sh
