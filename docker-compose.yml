@@ -12,7 +12,9 @@ services:
       context: .
       dockerfile: Dockerfile-python
     volumes:
-      - ./scripts:/scripts
+      - ./code:/code
+    ports:
+      - "8000:8000"
     depends_on:
       - ollama
     environment:

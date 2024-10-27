@@ -4,4 +4,6 @@ FROM python:alpine
 RUN apk add --no-cache curl
 
 # Install ollama pip package
-RUN pip install ollama
+RUN pip install ollama requests django
+
+CMD ["python", "/code/django/manage.py", "runserver", "0.0.0.0:8000"]
