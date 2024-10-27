@@ -5,14 +5,14 @@ import requests
 
 # Function to get current weather data for a fixed location (latitude 52.52, longitude 13.41)
 def get_weather_info() -> str:
-    url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,rain&forecast_days=1"
+    url = "http://localhost:8000/api/simple-json/"
     response = requests.get(url)
     return response.text if response.ok else json.dumps({'error': 'Unable to fetch weather data'})
 
 async def run(model: str):
     client = ollama.AsyncClient(host="http://ollama_api:11434")
     # Initialize conversation with a user query
-    messages = [{'role': 'user', 'content': 'What is the weather like?'}]
+    messages = [{'role': 'user', 'content': 'What does the weather forecast report for Tuesday morning ?'}]
 
     # First API call: Send the query and function description to the model
     response = await client.chat(
@@ -23,7 +23,7 @@ async def run(model: str):
                 'type': 'function',
                 'function': {
                     'name': 'get_weather_info',
-                    'description': 'Get current weather data for Berlin, Germany',
+                    'description': 'Get current weather data for Bourges, France',
                     'parameters': {
                         'type': 'object',
                         'properties': {},  # No parameters required since the location is fixed
